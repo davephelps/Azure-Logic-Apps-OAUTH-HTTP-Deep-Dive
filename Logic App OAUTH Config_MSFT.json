@@ -1,0 +1,99 @@
+{
+    "id": "/subscriptions/6022f96f-008c-4eb5-9b88-fe64b4c24d7b/resourcegroups/dpauth/providers/Microsoft.Web/sites/dpauth/config/authsettingsV2",
+    "name": "authsettingsV2",
+    "type": "Microsoft.Web/sites/config",
+    "location": "northeurope",
+    "tags": {},
+    "properties": {
+        "platform": {
+            "enabled": true,
+            "runtimeVersion": "~1"
+        },
+        "globalValidation": {
+            "requireAuthentication": true,
+            "unauthenticatedClientAction": "AllowAnonymous"
+        },
+        "identityProviders": {
+            "azureActiveDirectory": {
+                "enabled": true,
+                "registration": {
+                    "openIdIssuer": "https://sts.windows.net/2686657a-6b00-4969-b17c-4e972b28d0e4",
+                    "clientId": "c32f8950-aaa1-42fc-b1f8-40d2bb25bfe8"
+                },
+                "login": {
+                    "disableWWWAuthenticate": false
+                },
+                "validation": {
+                    "jwtClaimChecks": {},
+                    "allowedAudiences": [
+                        "https://w4q7k.onmicrosoft.com/auth"
+                    ],
+                    "defaultAuthorizationPolicy": {
+                        "allowedPrincipals": {
+                            "identities": [
+                            ]
+                        }
+                    }
+                }
+            },
+            "facebook": {
+                "enabled": false,
+                "registration": {},
+                "login": {}
+            },
+            "gitHub": {
+                "enabled": false,
+                "registration": {},
+                "login": {}
+            },
+            "google": {
+                "enabled": false,
+                "registration": {},
+                "login": {},
+                "validation": {}
+            },
+            "twitter": {
+                "enabled": false,
+                "registration": {}
+            },
+            "legacyMicrosoftAccount": {
+                "enabled": false,
+                "registration": {},
+                "login": {},
+                "validation": {}
+            },
+            "apple": {
+                "enabled": false,
+                "registration": {},
+                "login": {}
+            }
+        },
+        "login": {
+            "routes": {},
+            "tokenStore": {
+                "enabled": false,
+                "tokenRefreshExtensionHours": 72.0,
+                "fileSystem": {},
+                "azureBlobStorage": {}
+            },
+            "preserveUrlFragmentsForLogins": false,
+            "cookieExpiration": {
+                "convention": "FixedTime",
+                "timeToExpiration": "08:00:00"
+            },
+            "nonce": {
+                "validateNonce": true,
+                "nonceExpirationInterval": "00:05:00"
+            }
+        },
+        "httpSettings": {
+            "requireHttps": true,
+            "routes": {
+                "apiPrefix": "/.auth"
+            },
+            "forwardProxy": {
+                "convention": "NoProxy"
+            }
+        }
+    }
+}
