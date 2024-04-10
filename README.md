@@ -143,7 +143,7 @@ Next, navigate to the API request called "Call Logic App", then to *Headers* and
 Click *Send* and the Logic App should return with a 200 OK response, indicating the token is valid and has the correct audience. If the call fails, check the token in https://jwt.ms to ensure the token is present. Also make sure the Logic App Easy Auth configuration is checking for the same audience.
 
 ## How to Authorise Clients
-As mentioned at the start, there are three ways we can authorise clients:
+As mentioned at the start, there are three ways for the Logic App to authorise clients:
 
 * Authorise based on *audience* contained in the JWT
 * Authorise based on *audience* and the unique identifier (Application ID) of the client contained in the JWT
