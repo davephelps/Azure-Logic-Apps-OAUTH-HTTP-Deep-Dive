@@ -97,9 +97,9 @@ Click the *Certificates & Secrets* link, and click *New Client Secret* where a s
 
 To obtain a token from PostMan, create a new API Request based on an HTTP POST called "Get Logic App Token", and set the following in an *x-www-form-urlencoded* body: 
 
-Note, Postman has a feature called *Environments*, which allow variables to be configured and referenced in API requests. Variables are referenced by using double brace notation, for example {{tenant_id}}. Either create a new environment and configure the values below, or enter the real values into the API call. It's generally best practice to use environments as they can be re-used across more than one API call.
+Note: Postman has a feature called *Environments*, which allow variables to be configured and referenced in API requests. Variables are referenced using double brace notation, for example {{tenant_id}}. Either create a new environment and configure the values below, or enter the real values into the API call. It's generally best practice to use environments as they can be re-used across more than one API call.
 
-Postman has a feature to automate fetching a token, available in the Authorization tab. We are not using that here, rather we are setting the values in the HTTP request to demonstrate the mechanics of the authorisation request.
+Note: Postman has a feature to automate fetching a token, available in the Authorization tab. We are not using that feature but setting the values in the HTTP request to demonstrate the mechanics of the authorisation request.
 
 - Set the URL to *https://login.microsoftonline.com/{{tenantid}}/oauth2/v2.0/token* by changing **{{tenantid}}** to the ID of your tenant. This can be found by navigating to Microsoft Entra Id and clicking the **Overview** page and copying **Tenant ID**:
 
