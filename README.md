@@ -142,7 +142,7 @@ Next, navigate to the API request called "Call Logic App", then to *Headers* and
 
 Click *Send* and the Logic App should return with a 200 OK response, indicating the token is valid and has the correct audience. If the call fails, check the token in https://jwt.ms to ensure the token is present. Also make sure the Logic App Easy Auth configuration is checking for the same audience.
 
-## How to Authorise Clients
+## Authorising Clients
 As mentioned at the start, there are three ways for the Logic App to authorise clients:
 
 * Authorise based on *audience* contained in the JWT
@@ -184,7 +184,7 @@ The configuration should look similar to the example below:
 ```
 Update the Logic App Config using the az rest command and test the Logic App.
 
-# Authorise Based on Roles
+### Authorise Based on Roles
 While authorising based on the Application ID of the calling application provides fine grained control, it does mean however that the Logic App configuration must be updated for each new client that wants to call the Logic App.
 
 Another option that avoids the need to authorise specific clients is to use *roles*. With roles, we can create a role (or series of roles) on the Logic App Application Registration, then assign roles to clients. The role will only be contained in the JWT token if the client has specifically been granted access. We can then disable the feature that allows *any* client within the tenant to obtain a token. To do this, navigate to the Logic App Application Registration (ContosoBackendWorkflow) and click on *Managed Application in Local Directory*. Once the Enterprise Application is visible, click on *Properties* and change *Assignment Required* to *Yes* as follows:
