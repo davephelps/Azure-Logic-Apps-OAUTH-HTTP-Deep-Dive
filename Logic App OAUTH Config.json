@@ -1,8 +1,8 @@
 {
-    "id": "/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.Web/sites/{logicAppName}/config/authsettingsV2",
+    "id": "/subscriptions/{{subscription_id}}/resourcegroups/{{resource_group_name}}/providers/Microsoft.Web/sites/{{logic_app_name}}/config/authsettingsV2",
     "name": "authsettingsV2",
     "type": "Microsoft.Web/sites/config",
-    "location": "{locationOfLogicApp}",
+    "location": "{{region}}",
     "tags": {},
     "properties": {
         "platform": {
@@ -17,8 +17,8 @@
             "azureActiveDirectory": {
                 "enabled": true,
                 "registration": {
-                    "openIdIssuer": "https://sts.windows.net/16b3c013-d300-468d-ac64-7eda0820b6d3",
-                    "clientId": "{clientId}"
+                    "openIdIssuer": "https://sts.windows.net/{{tenantid}}/",
+                    "clientId": "{{la_client_id}}"
                 },
                 "login": {
                     "disableWWWAuthenticate": false
@@ -26,16 +26,12 @@
                 "validation": {
                     "jwtClaimChecks": {},
                     "allowedAudiences": [
-                        {audience1},
-                        "{audience2}"
+                        "{{la_audience}}"
                     ],
                     "defaultAuthorizationPolicy": {
                         "allowedPrincipals": {
-                            "identities": [
-                                "{ObjectId of AAD app1}",
-                                "{ObjectId of AAD app2}"
-                            ]
                         }
+                    }                    
                     }
                 }
             },

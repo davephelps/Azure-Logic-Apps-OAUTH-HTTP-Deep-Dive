@@ -1,8 +1,8 @@
 {
-    "id": "/subscriptions/6022f96f-008c-4eb5-9b88-fe64b4c24d7b/resourcegroups/dpauth/providers/Microsoft.Web/sites/dpauth/config/authsettingsV2",
+    "id": "/subscriptions/{{subscription_id}}/resourcegroups/{{resource_group_name}}/providers/Microsoft.Web/sites/{{logic_app_name}}/config/authsettingsV2",
     "name": "authsettingsV2",
     "type": "Microsoft.Web/sites/config",
-    "location": "northeurope",
+    "location": "{{region}}",
     "tags": {},
     "properties": {
         "platform": {
@@ -17,8 +17,8 @@
             "azureActiveDirectory": {
                 "enabled": true,
                 "registration": {
-                    "openIdIssuer": "https://sts.windows.net/2686657a-6b00-4969-b17c-4e972b28d0e4",
-                    "clientId": "c32f8950-aaa1-42fc-b1f8-40d2bb25bfe8"
+                    "openIdIssuer": "https://sts.windows.net/{{tenantid}}/",
+                    "clientId": "{{la_client_id}}"
                 },
                 "login": {
                     "disableWWWAuthenticate": false
@@ -26,13 +26,20 @@
                 "validation": {
                     "jwtClaimChecks": {},
                     "allowedAudiences": [
-                        "https://w4q7k.onmicrosoft.com/auth"
+                        "{{la_audience}}"
                     ],
                     "defaultAuthorizationPolicy": {
                         "allowedPrincipals": {
                             "identities": [
-                            ]
-                        }
+                                "{object id to restrict}",
+                                "{object id to restrict}"
+                                ]
+                        },
+                        "allowedApplications": [
+                            "{client id to restrict}",
+                            "{client id to restrict}"
+                        ]
+                    }                    
                     }
                 }
             },
@@ -96,4 +103,4 @@
             }
         }
     }
-}
+}​
