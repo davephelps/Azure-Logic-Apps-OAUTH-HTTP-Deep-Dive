@@ -32,6 +32,7 @@ As shown in the screenshot below, create a new Application Registration, provide
 
 ## Configure Application ID Uri
 Each Application Registration has an *Application ID Uri*, which by default is a GUID value. This value becomes the *audience* in the JWT token. It's best to change this to something more meaningful so when validating the JWT it will be clear on the permission being checked. There are strict rules on the value of *Application ID Uri*, for example if you use a domain it must be verified. See [this link](https://learn.microsoft.com/en-us/entra/identity-platform/security-best-practices-for-app-registration#application-id-uri) for more details. To set the Application ID Uri click on Application ID Uri on the overview page of the Application Registration:
+
 ![Set Application ID Uri](Application%20ID%20URI.png)
 
 
