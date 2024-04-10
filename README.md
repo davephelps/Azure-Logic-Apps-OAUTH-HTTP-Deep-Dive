@@ -87,7 +87,7 @@ The call should fail with a security error as we have not yet obtained a token f
 ### Test Locally using Microsoft Entra Id with PostMan
 To test the workflow, a valid token must be obtained from Microsoft Entra ID which is then passed to the workflow (from PostMan) as an HTTP header.
 
-Create another App Registration called "Contoso Sales Client". We will use this App Registration represent a test client to call the workflow. Create as single tenant and **make a note of the Application (client) ID on the Overview page as it will be required later**. "Application ID" and "Application ID" are the same thing and can be used interchangeably.
+Create another App Registration called "Contoso Sales Client". We will use this App Registration represent a test client to call the workflow. Create as single tenant and **make a note of the Application (client) ID on the Overview page as it will be required later**. "Application ID" and "Client ID" are the same thing and can be used interchangeably.
 
 Click the *Certificates & Secrets* link, and click *New Client Secret* where a secret can be created. **Make a note of the secret as it is only displayed once and will be required later**.
 
