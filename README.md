@@ -154,7 +154,7 @@ So far, we have implemented the first option - to authorise based on the *audien
 ### Authorise based on the unique identifier (Application ID)
 By default however, *any* client within the tenant is able to request a token from Microsoft Entra ID. While this may be the desired behaviour, a more likely scenario is to only allow *specific* clients to call the Logic App.
 
-We can update the Logic App configuration to specify a list of Application ID values so only *those* applications can access the Logic App. There is a second json template, [Client Auth](<Logic App OAUTH Config_client_auth.json>) which contains a section called *defaultAuthorizationPolicy* which has two json objects, *allowedPrincipals* and *allowedApplications*. Both allow restriction of the calling client, either by using the Application ID or the object id, and both can be an array to restrict multiple clients. If the *allowedPrincipals* element is present, this must be used and will override anything in the *allowedApplications* object, so use one or the other, not both. In our case we will add the Application Id used to test from PostMan.
+We can update the Logic App configuration to specify a list of Application ID values so only *those* applications can access the Logic App. There is a second json template, [Client Auth](<Logic App OAUTH Config_client_auth.json>) which contains a section called *defaultAuthorizationPolicy* which has two json objects, *allowedPrincipals* and *allowedApplications*, shown below:
 
 ```
     "defaultAuthorizationPolicy": {
@@ -170,6 +170,7 @@ We can update the Logic App configuration to specify a list of Application ID va
         ]
     }
 ```
+ Both options allow restriction of the calling client, either by using the Application ID or the object id, and both can be an array to restrict multiple clients. If the *allowedPrincipals* element is present, this must be used and will override anything in the *allowedApplications* object, so use one or the other, not both. In our case we will add the Application Id used to test from PostMan.
 
 
 Navigate to the Postman API Request called "Get Logic App Token", copy the client_id value and paste it into the *allowedApplications* array. Remove the *allowedPrincipals* object entirely, or just the *identities* section.
