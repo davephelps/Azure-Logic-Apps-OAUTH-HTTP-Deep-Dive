@@ -1,4 +1,4 @@
-# ProteDeep Dive on Protecting Azure Logic Apps Standard with Microsoft Entra ID (OAUTH) and calling from Azure API Management
+# Deep Dive on Protecting Azure Logic Apps Standard with Microsoft Entra ID (OAUTH) and calling from Azure API Management
 
 ## Summary 
 
