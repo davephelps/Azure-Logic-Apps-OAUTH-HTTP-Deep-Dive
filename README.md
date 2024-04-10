@@ -211,9 +211,11 @@ Next, we need to assign permission for the client application to have access to 
 ![Request Permissions](Request%20API%20Permissions.png)
 
 Within "APIs my organization uses", enter the name of the Logic App Application Registration, in this case ContosoBackendWorkflow. Select ContosoBackendWorkflow from the search results to display the Application Permissions screen. Select Application Permissions, then select the *ReadContosoOrders* role and click *Add Permissions*, as follows:
+
 ![Assign Backend Permissions](Assign%20backend%20role%20permissions.png)
 
 You should see the permission listed against the Contoso Client Application Registration:
+
 ![View Application Permissions](Contoso%20Client%20Permissions%20View.png)
 
 Although the permission is listed, permission has not yet been granted. To do this, login as an Microsoft Entra ID Administrator and click "Grant admin consent". For automated scenarios, or where Microsoft Entra ID Admin is not appropriate, see [here](https://learn.microsoft.com/en-us/graph/permissions-grant-via-msgraph?pivots=grant-application-permissions&tabs=http) for details on how to automate this without full Admin consent. Once permission has been granted, there should be a green tick:
@@ -311,7 +313,7 @@ The only additional step we need to do is to add a *policy* to the API to fetch 
 </policies>
 ```
 
-To user User Assigned Managed Identity, navigate to the User Assigned Managed Identity, copy the Application ID and use the following policy:
+To use User Assigned Managed Identity, navigate to the User Assigned Managed Identity, copy the Application ID and use the following policy:
 ```
 <policies>
     <inbound>
