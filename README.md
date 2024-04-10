@@ -14,14 +14,14 @@ We will cover three ways to authorise a client from a Logic App:
 * Authorise based on *audience* and the unique identifier (Application ID) of the client contained in the JWT
 * Authorise based on *audience* and *roles* (part of the JWT) assigned to the calling application
 
-We will talk through these scenarios in detail in later sections. We will also test a Microsoft Entra ID protected Logic App in two ways:
+We will talk through these scenarios in detail later. We will also test a Microsoft Entra ID protected Logic App in two ways:
 
 * Call the Logic App from Postman where a token is fetched from Microsoft Entra ID with a Application ID and secret
 * Call the Logic App from Azure API Management using *Managed Identity*
 
 # Logic App Microsoft Entra ID Configuration
 
-To enable OAUTH, the first thing we need to do is configure an *Application Registration* in Microsoft Entra ID. The Application Registration is the security context in Microsoft Entra ID that represents the Logic App (the service). We will then create additional App Registrations or Managed Identities to represent clients we will use to obtain access tokens to to call the Logic App workflow.
+To enable OAUTH we need to create and configure an *Application Registration* in Microsoft Entra ID. The Application Registration is the security context in Microsoft Entra ID representing the Logic App (the service). We will then create additional App Registrations or Managed Identities to represent clients. These clients will be used to obtain access tokens to to call the Logic App workflow.
 
 ## Create Logic App Application Registration
 
