@@ -196,10 +196,12 @@ Once Assignment Required has been set to Yes, our Logic App will no longer succe
 
 ## Creating Roles
 We will create a role within the Application Registration, in this case a role to allow a client application to read Contoso orders. First, navigate to *Roles*, then click *Create App Role*, as follows:
-![](Create%20Application%20Role.png)
+
+![Create Role](Create%20Application%20Role.png)
 
 
 The following page is displayed allowing a role to be created. In our case we are creating a role called *Read Contoso Orders*:
+
 ![Create Role](Create%20Role.png)
 
 ## Create Client Application
