@@ -8,15 +8,15 @@ Logic Apps Standard is built on top of Azure Functions, so has access to the *Ea
 
 ## Scenarios
 
-We will cover three ways we can authorise a client from a Logic App:
+We will cover three ways to authorise a client from a Logic App:
 
 * Authorise based on *audience* contained in the JWT
 * Authorise based on *audience* and the unique identifier (Application ID) of the client contained in the JWT
 * Authorise based on *audience* and *roles* (part of the JWT) assigned to the calling application
 
-We will talk through these scenarios in detail in later sections. We will also test our Microsoft Entra ID protected Logic App in two ways:
+We will talk through these scenarios in detail in later sections. We will also test a Microsoft Entra ID protected Logic App in two ways:
 
-* Call the Logic App from Postman where we fetch a  token from Microsoft Entra ID with a Application ID and secret
+* Call the Logic App from Postman where a token is fetched from Microsoft Entra ID with a Application ID and secret
 * Call the Logic App from Azure API Management using *Managed Identity*
 
 # Logic App Microsoft Entra ID Configuration
