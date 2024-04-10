@@ -93,7 +93,7 @@ Click the *Certificates & Secrets* link, and click *New Client Secret* where a s
 
 ![Client Secret](<Client - secret.png>)
 
-### Test Obtaining a Token with PostMan
+### Obtain a Token from PostMan
 
 To obtain a token from PostMan, create a new API Request based on an HTTP POST called "Get Logic App Token":
 
@@ -108,7 +108,7 @@ Set the following in an *x-www-form-urlencoded* body:
 - client_id - this is the Application ID copied from the Test Client Application Registration just created
 - client_secret - this is the secret created earlier from the Test Client Application Registration just created
 - grant_type - this is set to *client_credentials* and represents the OAUTH2 flow for one system talking to another (i.e., no user present) 
-- scope - this is Application ID URI created in the Logic App App Registration with **/.default** appended. For example, https://yourtenant.onmicrosoft.com/contoso/app/backend/.default
+- scope - this is the Application ID URI created in the Logic App App Registration with **/.default** appended. For example, https://yourtenant.onmicrosoft.com/contoso/app/backend/.default
 
 For example:
 
