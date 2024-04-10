@@ -64,7 +64,7 @@ A sample payload we can use as a template can be found [here](<Logic App OAUTH C
 ||
 
 
-Once the file has been saved we need to use the Azure CLI to deploy the changes. Azure CLI can be used in a variety of ways, including from Visual Studio, Visual Studio Code and the Azure Portal CLI. We will use Visual Studio.
+Once the file has been saved we will use the Azure CLI to deploy the changes. Azure CLI can be used in a variety of ways, including from Visual Studio, Visual Studio Code and the Azure Portal CLI. We will use Visual Studio.
 
 Open Visual Studio and start a new Terminal by selecting *Terminal* from the *View* menu.
 
@@ -85,7 +85,7 @@ Create a new API request in PostMan called "Call Logic App", paste in the HTTP t
 The call should fail with a security error as we have not yet obtained a token from Microsoft Entra Id to pass to the workflow.
 
 ### Test Locally using Microsoft Entra Id with PostMan
-In order to test the workflow, we need to pass a valid token we have obtained from Microsoft Entra ID. We then pass this to the workflow as an HTTP header when we test from PostMan.
+To test the workflow, a valid token must be obtained from Microsoft Entra ID which is then passed to the workflow (from PostMan) as an HTTP header.
 
 Create another App Registration called "Contoso Sales Client". We will use this App Registration represent a test client to call the workflow. Create as single tenant and **make a note of the Application (client) ID on the Overview page as it will be required later**. "Application ID" and "Application ID" are the same thing and can be used interchangeably.
 
