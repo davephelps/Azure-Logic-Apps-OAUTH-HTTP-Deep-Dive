@@ -27,17 +27,16 @@ To enable OAUTH we need to create and configure an *Application Registration* in
 
 As shown in the screenshot below, create a new Application Registration, provide a name but leave everything else as default. In our case, the App Registration is called "ContosoBackendWorkflow":
 
-![Register Application
-](Register%20Backend%20App%20Registration%20for%20Logic%20App.png)
+![Register Application](images/Register%20Backend%20App%20Registration%20for%20Logic%20App.png)
 
 ## Configure Application ID Uri
 Each Application Registration has an *Application ID Uri*, which by default is a GUID value. This value becomes the *audience* in the JWT token. It's best to change this to something more meaningful so when validating the JWT it will be clear on the permission being checked. There are strict rules on the value of *Application ID Uri*, for example if you use a domain it must be verified. See [this link](https://learn.microsoft.com/en-us/entra/identity-platform/security-best-practices-for-app-registration#application-id-uri) for more details. To set the Application ID Uri click on Application ID Uri on the overview page of the Application Registration:
 
-![Set Application ID Uri](Application%20ID%20URI.png)
+![Set Application ID Uri](images/Application%20ID%20URI.png)
 
 
 
-![Application ID Uri](Application%20ID%20URI%20Set.png)
+![Application ID Uri](images/Application%20ID%20URI%20Set.png)
 
 
 
@@ -90,8 +89,8 @@ To test the workflow, a valid token must be obtained from Microsoft Entra ID whi
 Create another App Registration called "Contoso Sales Client". We will use this App Registration represent a test client to call the workflow. Create as single tenant and **make a note of the Application (client) ID on the Overview page as it will be required later**. "Application ID" and "Client ID" are the same thing and can be used interchangeably.
 
 Click the *Certificates & Secrets* link, and click *New Client Secret* where a secret can be created. **Make a note of the secret as it is only displayed once and will be required later**.
+![Client Secret](<images/Client - secret.png>)
 
-![Client Secret](<Client - secret.png>)
 
 ### Obtain a Token from PostMan
 
@@ -112,7 +111,7 @@ Set the following in an *x-www-form-urlencoded* body:
 
 For example:
 
-![Postman Get Token](<Postman - Get Token.png>)
+![Postman Get Token](<images/Postman - Get Token.png>)
 
 
 
@@ -138,7 +137,7 @@ This will update a variable called *la_bearer* with the access token allowing us
 
 Next, navigate to the API request called "Call Logic App", then to *Headers* and add a header called "Authorization" with a value of "{{la_bearer}}", for example:
 
-![Call Logic App](<Postman - Call Logic App.png>)
+![Call Logic App](<images/Postman - Call Logic App.png>)
 
 Click *Send* and the Logic App should return with a 200 OK response, indicating the token is valid and has the correct audience. If the call fails, check the token in https://jwt.ms to ensure the token is present. Also make sure the Logic App Easy Auth configuration is checking for the same audience.
 
@@ -190,37 +189,37 @@ While authorising based on the Application ID of the calling application provide
 
 Another option that avoids the need to authorise specific clients is to use *roles*. With roles, we can create a role (or series of roles) on the Logic App Application Registration, then assign roles to clients. The role will only be contained in the JWT token if the client has specifically been granted access. We can then disable the feature that allows *any* client within the tenant to obtain a token. To do this, navigate to the Logic App Application Registration (ContosoBackendWorkflow) and click on *Managed Application in Local Directory*. Once the Enterprise Application is visible, click on *Properties* and change *Assignment Required* to *Yes* as follows:
 
-![Assignment Required](<Enterprise Application - Assignment required.png>)
+![Assignment Required](<images/Enterprise Application - Assignment required.png>)
 
 Once Assignment Required has been set to Yes, our Logic App will no longer succeed. This is because we now need to assign a role to the client. Doing this will set the audience and role in the JWT token.
 
 ## Creating Roles
 We will create a role within the Application Registration, in this case a role to allow a client application to read Contoso orders. First, navigate to *Roles*, then click *Create App Role*, as follows:
 
-![Create Role](Create%20Application%20Role.png)
+![Create Role](images/Create%20Application%20Role.png)
 
 
 The following page is displayed allowing a role to be created. In our case we are creating a role called *Read Contoso Orders*:
 
-![Create Role](Create%20Role.png)
+![Create Role](images/Create%20Role.png)
 
 ## Create Client Application
 
 Next, we need to assign permission for the client application to have access to the Read Contoso Orders role. The client application could be an App Registration with client id and secret (to test from Postman) or Managed Identity assigned to an Azure Service. We will test from Postman first, so navigate to the "Contoso Sales Client" App Registration and click *API Permissions*, then click "Add a Permission" where the following screen is displayed:
 
-![Request Permissions](Request%20API%20Permissions.png)
+![Request Permissions](images/Request%20API%20Permissions.png)
 
 Within "APIs my organization uses", enter the name of the Logic App Application Registration, in this case ContosoBackendWorkflow. Select ContosoBackendWorkflow from the search results to display the Application Permissions screen. Select Application Permissions, then select the *ReadContosoOrders* role and click *Add Permissions*, as follows:
 
-![Assign Backend Permissions](Assign%20backend%20role%20permissions.png)
+![Assign Backend Permissions](images/Assign%20backend%20role%20permissions.png)
 
 You should see the permission listed against the Contoso Client Application Registration:
 
-![View Application Permissions](Contoso%20Client%20Permissions%20View.png)
+![View Application Permissions](images/Contoso%20Client%20Permissions%20View.png)
 
 Although the permission is listed, permission has not yet been granted. To do this, login as an Microsoft Entra ID Administrator and click "Grant admin consent". For automated scenarios, or where Microsoft Entra ID Admin is not appropriate, see [here](https://learn.microsoft.com/en-us/graph/permissions-grant-via-msgraph?pivots=grant-application-permissions&tabs=http) for details on how to automate this without full Admin consent. Once permission has been granted, there should be a green tick:
 
-![Permission Granted](Client%20Permission%20Granted.png)
+![Permission Granted](images/Client%20Permission%20Granted.png)
 
 ## Test from PostMan
 The final step is to request a token and verify the audience and role have been set correctly in the JWT token. In PostMan, navigate to the "Get Logic Apps Token" API Request and press *Send*. If the request is successful (which it only will be if the permission has been granted), copy the access token and view in https://jwt.ms. There should be an entry called *roles* with an entry for the role assigned above.
@@ -228,7 +227,7 @@ The final step is to request a token and verify the audience and role have been 
 ## Fine Grained Authorisation from Logic Apps Workflows
 A further step we can take is to check the role within the Logic App Workflow itself. This allows for fine grained authorisation, for example two roles could be created, one to read orders and one to create orders. Two workflows in the same Logic App could then check for a specific role, which can easily be achieved using expressions in Logic Apps. For example, in the following example we are using a *Compose* action to retrieve the role, then a *Condition* to check if the role was present or not:
 
-![Check Claims](<Logic Apps - Check Claims.png>)
+![Check Claims](<images/Logic Apps - Check Claims.png>)
 
 The workflow json snippet is as follows:
 ```
@@ -289,7 +288,7 @@ So far, we have only tested calling the Logic App from PostMan, but calling from
 ### Configure Managed Identity in Azure API Management
 Managed Identity settings in Azure API Mnagement can be found by navigating to *Security* then *Managed Identities* where System and User Assigned Managed Identities can be configured. Here is an example of a system assigned managed identity:
 
-![System Assigned](<APIM System Assigned MI.png>)
+![System Assigned](<images/APIM System Assigned MI.png>)
 
 
 ### Configure API Management Policy for Managed Identity
